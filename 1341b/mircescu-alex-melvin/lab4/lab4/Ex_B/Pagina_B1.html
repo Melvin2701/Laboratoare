@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina B1</title>
+    <style>
+        body {
+            background-color: #ffffcc;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .zona {
+            background-color: #ccffcc;   
+            padding: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+       
+        .t1 {
+            background-color: blue;
+            color: white;
+        }
+
+        .t1 th, .t1 td {
+            border: 1px solid white;
+            padding: 8px;
+        }
+
+        
+        .t2 th, .t2 td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Două tabele</h1>
+
+    <div class="zona">
+        <table class="t1">
+            <tr><th>Produs</th><th>Preț</th><th>Stoc</th></tr>
+            <tr><td>Caiet</td><td>5 lei</td><td>120</td></tr>
+            <tr><td>Pix</td><td>2 lei</td><td>300</td></tr>
+        </table>
+    </div>
+
+    <table class="t2">
+        <tr><th>Produs</th><th>Preț</th><th>Stoc</th></tr>
+        <tr><td>Creion</td><td>1 leu</td><td>250</td></tr>
+        <tr><td>Riglă</td><td>3 lei</td><td>80</td></tr>
+    </table>
+
+    <p><a href="../index.html">Înapoi la Laboratorul 4</a></p>
+
+    <!--
+        Ex. 3 – Explicatii
+
+1. Tabelele au fundaluri diferite deoarece sunt transparente si se vede fundalul parintelui. Primul este intr-un div verde, iar al doilea in body. Am adaugat fundal albastru si text alb primului tabel.
+2. Celulele aveau chenare si padding diferite din cauza regulilor CSS. Le-am uniformizat folosind aceeasi regula pentru th si td.
+
+    -->
+</body>
+</html>
