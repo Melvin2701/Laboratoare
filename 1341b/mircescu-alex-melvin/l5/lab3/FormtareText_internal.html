@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Formatare text – stiluri interne</title>
+    <style>
+        .titlu1 {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14pt;
+            color: blue;
+        }
+
+        .titlu2 {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            color: red;
+        }
+
+        .verde {
+            font-family: 'Times New Roman', serif;
+            font-size: 12pt;
+            color: green;
+        }
+
+        .galben {
+            background-color: yellow;
+            font-family: Calibri, sans-serif;
+            font-size: 12pt;
+            color: blue;
+        }
+
+        .galben p {      
+            font-style: italic;
+        }
+
+        .albastru {
+            background-color: blue;
+            font-family: Arial, sans-serif;
+            font-size: 10pt;
+            color: white;
+        }
+
+        .albastru p {                
+            font-variant: small-caps;
+        }
+
+        footer {
+            color: white;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="titlu1">Header - Courier 14, albastru</h1>
+
+    <h2 class="titlu2">Header - Arial 12, rosu</h2>
+
+    <p class="verde">
+        Paragraf - Times new roman, 12, verde <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+
+    <div class="galben">
+        <h3>Sectiune cu fond galben si text Calibri 12 albastru</h3>
+        <p>
+            Paragraf cu text italic <br />
+            Curabitur pretium tincidunt lacus. Nulla gravida orci a odio, et
+            pharetra lectus aliquet vel.
+        </p>
+    </div>
+
+    <div class="albastru">
+        <h1>Sectiune cu fond albastru si text Arial 10 alb</h1>
+        <p>
+            Paragraf scris cu "small caps" <br />
+            Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque
+            ut, mollis sed, nonummy id, metus.
+        </p>
+    </div>
+
+    <footer>
+        &copy; an3-FSA 2017 – Programarea aplicațiilor web
+    </footer>
+
+    <p><a href="index.html">Înapoi la Laboratorul 3</a></p>
+</body>
+</html>

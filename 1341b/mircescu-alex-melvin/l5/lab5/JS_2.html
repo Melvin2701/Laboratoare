@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_2</title>
+    <script>
+        var activ = false;              // starea se păstrează între clicuri
+
+        function schimba() {
+            var p = document.getElementById("demo");
+            var b = document.getElementById("buton");
+
+            if (!activ) {
+                p.style.backgroundColor = "yellow";
+                p.style.color = "blue";
+                b.innerHTML = "Revino la stilul inițial";
+            } else {
+                p.style.backgroundColor = "white";
+                p.style.color = "black";
+                b.innerHTML = "Schimbă stilul";
+            }
+            activ = !activ;
+        }
+    </script>
+</head>
+<body>
+    <h1>JS_2</h1>
+    <p id="demo">Acest paragraf își schimbă stilul la fiecare clic pe buton.</p>
+    <button id="buton" onclick="schimba()">Schimbă stilul</button>
+    <p><a href="index.html">Înapoi la laboratorul 5</a></p>
+</body>
+</html>
