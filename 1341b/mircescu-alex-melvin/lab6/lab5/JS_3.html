@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>JS_3</title>
+    <script>
+        alert("1. Script din <head>");
+    </script>
+</head>
+<body>
+    <h1>JS_3</h1>
+    <script>
+        alert("2. Script din <body>, după titlu");
+    </script>
+
+    <p>Paragraf de după al doilea script.</p>
+    <script>
+        alert("3. Script din <body>, după paragraf");
+
+        var a = 5;
+        var b = 6;
+        var c = 35;
+        // c + a = 40 (adunare de numere); 40 + "" devine text, apoi + b lipește 6 => "406"
+        console.log(c + a + "" + b);
+    </script>
+
+    <p><a href="index.html">Înapoi la laboratorul 5</a></p>
+</body>
+</html>

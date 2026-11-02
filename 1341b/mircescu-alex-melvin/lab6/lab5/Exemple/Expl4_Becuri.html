@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Expl4 – becuri</title>
+    <script>
+        function comuta(bec) {
+            if (bec.src.indexOf("bulboff") !== -1) {
+                bec.src = "pic_bulbon.gif";
+            } else {
+                bec.src = "pic_bulboff.gif";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Becuri</h1>
+    <p>Primul bec: clic. Al doilea bec: mouse deasupra / în afara imaginii.</p>
+
+    <img src="pic_bulboff.gif" alt="Bec" onclick="comuta(this)">
+    <img src="pic_bulboff.gif" alt="Bec"
+         onmouseover="this.src = 'pic_bulbon.gif'"
+         onmouseout="this.src = 'pic_bulboff.gif'">
+
+    <p><a href="index.html">Înapoi la exemple</a></p>
+</body>
+</html>

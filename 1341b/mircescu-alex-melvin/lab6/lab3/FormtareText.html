@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Indicații – prioritatea regulilor CSS</title>
+
+    <!-- Blocul <style> este acum ÎNAINTEA fișierului extern -->
+    <style>
+        .verde { color: orange; }
+    </style>
+    <link rel="stylesheet" href="myStyle.css">
+</head>
+<body>
+    <h1>Indicații – prioritatea regulilor CSS</h1>
+
+    <!-- Paragraful are clasa "verde" (definită în myStyle.css) -->
+    <p class="verde">
+        Paragraf - Times new roman, 12, verde <br>
+        Culoarea acestui text este stabilită de trei reguli care se contrazic.
+    </p>
+
+    <p><a href="index.html">Înapoi la Laboratorul 3</a></p>
+
+    <!--
+        Ordinea de prioritate constatată (de la cea mai puternică la cea mai slabă):
+
+        1. Atributul style de pe element (mov)          -> a câștigat primul
+        2. Regula din <style> sau din fișierul extern    -> la specificitate egală
+           (.verde în ambele locuri), câștigă cea scrisă ULTIMA în pagină:
+             - <style> după <link>   -> portocaliu
+             - <style> înainte de <link> -> verde (myStyle.css vine ultimul)
+
+        Concluzie: inline > selector mai specific (id > clasă > tag) > ordinea în pagină.
+        Fișierul extern nu are prioritate proprie: contează doar unde este legat.
+    -->
+</body>
+</html>

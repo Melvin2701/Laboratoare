@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina A2</title>
+    <style>
+        h1.center {
+            background-color: #00cc66;
+            color: orange;
+        }
+
+        p {
+            color: blue;
+            background-color: #cccc00;
+        }
+
+        body {
+            background-color: #ffffcc;
+        }
+
+        .center {
+            font-variant: small-caps;
+            color: blue;
+        }
+
+        .center, p {
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="center">Heading roșu centrat</h1>
+
+    <p>Paragraf roșu centrat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+    <p>
+        <a href="Pagina_A1.html">Pagina 1</a><br>
+        <a href="../index.html">Înapoi la Laboratorul 4</a>
+    </p>
+
+    <!--
+        Link corectat: href="Pagina_A1.html" (înainte era fără extensie).
+
+        BONUS – de ce nu ar fi suficientă o regulă h1 { … } scrisă la începutul blocului?
+        Selectorul h1 este doar un tag (specificitate cea mai mică). Regulile
+        ".center { color: blue }" și ".center, p { color: red }" folosesc o clasă,
+        iar o clasă bate orice selector de tag, oriunde ar fi scrisă regula.
+        Deci h1 { color: orange } ar pierde și textul ar rămâne roșu (nu portocaliu);
+        doar fundalul verde s-ar aplica, fiindcă nicio regulă cu clasă nu îl setează.
+        Selectorul h1.center (tag + clasă) are specificitate mai mare decât .center,
+        deci câștigă la ambele proprietăți, chiar dacă este scris primul, și fără !important.
+    -->
+</body>
+</html>

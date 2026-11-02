@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>L6_2</title>
+</head>
+<body>
+    <h1>L6_2 – getElementsByTagName și document.title</h1>
+
+    <p>Primul paragraf</p>
+    <p>Un paragraf din mijloc</p>
+    <p>Ultimul paragraf</p>
+
+    <div><a href="index.html">Înapoi la laboratorul 6</a></div>
+
+    <script>
+        var p = document.getElementsByTagName("p");
+
+        p[0].style.color = "blue";
+        p[0].style.backgroundColor = "yellow";
+
+        var ultim = p[p.length - 1];
+        ultim.style.color = "yellow";
+        ultim.style.backgroundColor = "blue";
+
+        document.title = "L6_2 – modificat prin JavaScript";
+    </script>
+</body>
+</html>

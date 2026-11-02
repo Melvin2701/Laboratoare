@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina C1</title>
+    <style>
+        body {
+            background-color: #ffffcc;
+            font-family: 'Times New Roman', serif;
+        }
+
+        h1 {
+            background-color: #cccc00;
+            color: purple;
+            font-variant: small-caps;
+        }
+
+        p {
+            color: red;
+            text-align: center;
+        }
+
+        table.echipe {
+            width: 100%;
+            border: 2px solid green;
+            border-collapse: collapse;       
+        }
+
+        table.echipe caption {             
+            background-color: orange;
+            color: white;
+            font-size: 1.6em;
+        }
+
+        table.echipe th,
+        table.echipe td {
+            border: 2px solid green;        
+            padding: 14px 18px;             
+        }
+
+        table.echipe th {                  
+            background-color: magenta;
+        }
+
+        table.echipe td {                     
+            background-color: orange;
+        }
+
+        table.echipe td.echipa {           
+            background-color: magenta;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabel special</h1>
+    <p>Un tabel cu "celule lipite"</p>
+
+    <table class="echipe">
+        <caption>Echipe si hobby-uri</caption>
+        <tr>
+            <th>Echipa</th>
+            <th>Nume</th>
+            <th colspan="2">Pasiuni</th>
+        </tr>
+
+        <tr>
+            <td class="echipa" rowspan="3">Munte</td>
+            <td>Popescu</td>
+            <td>calatorii</td>
+            <td>filatelie</td>
+        </tr>
+        <tr>
+            <td>Ionescu</td>
+            <td>planorism</td>
+            <td>sah</td>
+        </tr>
+        <tr>                                 
+            <td>Dumitrescu</td>
+            <td>alpinism</td>
+            <td>fotografie</td>
+        </tr>
+
+        <tr>
+            <td class="echipa" rowspan="3">Mare</td>
+            <td>Georgescu</td>
+            <td>plaja</td>
+            <td>dans</td>
+        </tr>
+        <tr>
+            <td>Gigescu</td>
+            <td>surf</td>
+            <td>samba</td>
+        </tr>
+        <tr>                                
+            <td>Mintescu</td>
+            <td>politica</td>
+            <td>delicateturi</td>
+        </tr>
+    </table>
+
+    <p><a href="../index.html">Înapoi la Laboratorul 4</a></p>
+
+    <!--
+    Ex. 4: Am adaugat border, border-collapse si padding pentru chenare unite si spatiere.
+    Ex. 5: Am adaugat un membru in fiecare echipa si am schimbat rowspan de la 2 la 3.
+    Ex. 6: Caption portocaliu, antet magenta, celule portocalii, echipe magenta si chenare verzi. Selectorul mai specific face celulele echipelor magenta.
+    -->
+</body>
+</html>
