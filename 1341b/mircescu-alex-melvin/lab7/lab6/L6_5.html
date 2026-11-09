@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>L6_5</title>
+</head>
+<body>
+    <h3>L6_5 – imagini înlocuite la evenimente</h3>
+    <p>La clic pe imagine apar pisici:</p>
+    <img id="i1" src="Pesti.jpg" alt="Imagine 1" width="200">
+
+    <p>La mouseover pe imagine apar câini:</p>
+    <img id="i2" src="desert.jpg" alt="Imagine 2" width="200">
+
+    <p>La mouseout de pe imagine apare marea:</p>
+    <img id="i3" src="egrete.jpg" alt="Imagine 3" width="200">
+
+    <p>La clic pe imagine apar munții:</p>
+    <img id="i4" src="jungla.jpg" alt="Imagine 4" width="200">
+
+    <p><a href="index.html">Înapoi la laboratorul 6</a></p>
+
+    <script>
+        document.getElementById("i1").onclick = function () {
+            this.src = "Img/pisici.jpg";
+        };
+
+        document.getElementById("i2").onmouseover = function () {
+            this.src = "Img/caini.jpg";
+        };
+
+        document.getElementById("i3").onmouseout = function () {
+            this.src = "Img/mare.jpg";
+        };
+
+        document.getElementById("i4").onclick = function () {
+            this.src = "Img/munti.jpg";
+        };
+    </script>
+</body>
+</html>

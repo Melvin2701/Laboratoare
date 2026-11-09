@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Expl3 – click pe buton, cu funcție</title>
+    <script>
+        var activ = false;
+
+        function schimba() {
+            var p = document.getElementById("demo");
+            var b = document.getElementById("buton");
+
+            if (!activ) {
+                p.style.backgroundColor = "yellow";
+                p.style.color = "blue";
+                b.innerHTML = "Înapoi";
+            } else {
+                p.style.backgroundColor = "white";
+                p.style.color = "black";
+                b.innerHTML = "Schimbă";
+            }
+            activ = !activ;
+        }
+    </script>
+</head>
+<body>
+    <h1>Click pe buton, cu funcție</h1>
+    <p id="demo">Stilul acestui paragraf alternează la fiecare clic.</p>
+    <button id="buton" onclick="schimba()">Schimbă</button>
+    <p><a href="index.html">Înapoi la exemple</a></p>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>L7_D – Mașini (chei separate)</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; }
+        input, button { font-size: 16px; padding: 4px 8px; margin: 3px; }
+        .sectiune { padding: 10px 16px; margin-bottom: 16px; }
+        .rez { margin: 8px 0; }
+    </style>
+    <script>
+        var masinaJs = null;
+
+        function masinaJavaScript() {
+            var tip = prompt("Tip:", "Dacia");
+            var model = prompt("Model:", "Logan");
+            var culoare = prompt("Culoare:", "alb");
+            if (tip !== null && model !== null && culoare !== null) {
+                masinaJs = { tip: tip, model: model, culoare: culoare };
+                document.getElementById("mjs").textContent =
+                    "Tip: " + tip + ", Model: " + model + ", Culoare: " + culoare;
+            }
+        }
+
+        function arata(depozit, idRez) {
+            var tip = depozit.getItem("tip");
+            var rez = document.getElementById(idRez);
+            if (tip === null) {
+                rez.textContent = "Nicio mașină salvată";
+            } else {
+                rez.textContent = "Tip: " + tip +
+                    ", Model: " + depozit.getItem("model") +
+                    ", Culoare: " + depozit.getItem("culoare");
+            }
+        }
+
+        function salveaza(depozit, sufix, idRez) {
+            depozit.setItem("tip", document.getElementById("tip" + sufix).value);
+            depozit.setItem("model", document.getElementById("model" + sufix).value);
+            depozit.setItem("culoare", document.getElementById("culoare" + sufix).value);
+            arata(depozit, idRez);
+        }
+
+        function sterge(depozit, idRez) {
+            depozit.removeItem("tip");
+            depozit.removeItem("model");
+            depozit.removeItem("culoare");
+            arata(depozit, idRez);
+        }
+
+        function salveazaMls() { salveaza(localStorage, "L", "mls"); return false; }
+        function stergeMls()   { sterge(localStorage, "mls"); }
+
+        function salveazaMss() { salveaza(sessionStorage, "S", "mss"); return false; }
+        function stergeMss()   { sterge(sessionStorage, "mss"); }
+
+        function incarca() {
+            arata(localStorage, "mls");
+            arata(sessionStorage, "mss");
+        }
+    </script>
+</head>
+<body onload="incarca()">
+
+    <div class="sectiune" style="background-color:SteelBlue;color:white;font-size:200%"
+         onclick="masinaJavaScript()">
+        <p>Masina JavaScript (clic pentru a introduce)</p>
+        <div id="mjs" class="rez">Nicio mașină introdusă</div>
+    </div>
+
+    <div class="sectiune" style="background-color:ForestGreen;color:white;font-size:200%">
+        <p>Masina Local Storage</p>
+        <form onsubmit="return salveazaMls()">
+            <label for="tipL">Tip</label> <input id="tipL" required>
+            <label for="modelL">Model</label> <input id="modelL" required>
+            <label for="culoareL">Culoare</label> <input id="culoareL" required>
+            <button type="submit">Salvează</button>
+            <button type="button" onclick="stergeMls()">Șterge</button>
+        </form>
+        <div id="mls" class="rez"></div>
+    </div>
+
+    <div class="sectiune" style="background-color:DarkOrange;color:white;font-size:200%">
+        <p>Masina Session Storage</p>
+        <form onsubmit="return salveazaMss()">
+            <label for="tipS">Tip</label> <input id="tipS" required>
+            <label for="modelS">Model</label> <input id="modelS" required>
+            <label for="culoareS">Culoare</label> <input id="culoareS" required>
+            <button type="submit">Salvează</button>
+            <button type="button" onclick="stergeMss()">Șterge</button>
+        </form>
+        <div id="mss" class="rez"></div>
+    </div>
+
+    <p><a href="index.html">Înapoi la laboratorul 7</a></p>
+
+    <!--
+        Ex. 3–4: formularele înlocuiesc prompt-ul; onclick a fost scos de pe <div>, altfel fiecare
+        clic într-un câmp ar porni din nou funcția. Funcțiile apelate la onsubmit se termină cu
+        return false, ca pagina să nu se reîncarce. Afișarea la deschidere se face din
+        <body onload="incarca()">. Butoanele "Șterge" folosesc removeItem.
+        Diferența: deschideți pagina într-o filă nouă – mașina din Local Storage rămâne,
+        cea din Session Storage dispare. "Masina JavaScript" nu se păstrează nici la reîncărcare.
+    -->
+</body>
+</html>

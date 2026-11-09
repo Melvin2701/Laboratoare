@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>L7_A – Contoare</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; margin: 30px; }
+        button { font-size: 16px; padding: 8px 16px; }
+        table { border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid black; padding: 8px 12px; text-align: left; }
+        th { background-color: #dddddd; }
+    </style>
+    <script>
+        function arata() {
+            document.getElementById("rezL").innerHTML =
+                "Contor local: " + (localStorage.getItem("clickcount") || 0);
+            document.getElementById("rezS").innerHTML =
+                "Contor sesiune: " + (sessionStorage.getItem("clickcount") || 0);
+        }
+
+        function clickLocal() {
+            if (typeof (Storage) === "undefined") {
+                alert("Browserul nu suportă Web Storage.");
+                return;
+            }
+            if (localStorage.clickcount) {
+                localStorage.clickcount = Number(localStorage.clickcount) + 1;
+            } else {
+                localStorage.clickcount = 1;
+            }
+            //localStorage.removeItem("clickcount");
+            arata();
+        }
+
+        function clickSesiune() {
+            if (typeof (Storage) === "undefined") {
+                alert("Browserul nu suportă Web Storage.");
+                return;
+            }
+            if (sessionStorage.getItem("clickcount")) {
+                sessionStorage.setItem("clickcount", Number(sessionStorage.getItem("clickcount")) + 1);
+            } else {
+                sessionStorage.setItem("clickcount", 1);
+            }
+            arata();
+        }
+    </script>
+</head>
+<body onload="arata()">
+    <h1>Contoare: Local Storage și Session Storage</h1>
+
+    <p><button onclick="clickLocal()">Contor local</button></p>
+    <p id="rezL"></p>
+
+    <p><button onclick="clickSesiune()">Contor sesiune</button></p>
+    <p id="rezS"></p>
+
+    <h2>Ce se observă</h2>
+    <table>
+        <tr><th>Situație</th><th>Contor local</th><th>Contor sesiune</th></tr>
+        <tr><td>reîncărcarea paginii (F5)</td><td>continuă</td><td>continuă</td></tr>
+        <tr><td>aceeași pagină, într-o filă nouă</td><td>continuă</td><td>pornește de la 1</td></tr>
+        <tr><td>închiderea și redeschiderea browserului</td><td>continuă</td><td>pornește de la 1</td></tr>
+        <tr><td>ștergerea cheii din instrumentele dezvoltatorului</td><td>pornește de la 1</td><td>pornește de la 1</td></tr>
+    </table>
+
+    <p>
+        Valoarea se salvează ca text, de aceea codul o transformă cu <code>Number(…)</code> înainte de
+        <code>+ 1</code>; fără ea, "1" + 1 ar da "11". <code>localStorage.clickcount</code> și
+        <code>sessionStorage.getItem("clickcount")</code> sunt două scrieri echivalente, folosite intenționat.
+        Unele browsere restaurează sesiunea la redeschiderea filelor închise; atunci și contorul de sesiune poate continua.
+    </p>
+
+    <p><a href="index.html">Înapoi la laboratorul 7</a></p>
+</body>
+</html>

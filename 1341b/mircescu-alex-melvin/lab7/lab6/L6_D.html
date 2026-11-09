@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>L6_D – galerie</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; text-align: center; }
+        img  { width: 400px; max-width: 100%; border: 2px solid #333; }
+        button { padding: 8px 18px; font-size: 16px; margin: 6px; }
+    </style>
+</head>
+<body>
+    <h1>Galerie de imagini</h1>
+
+    <img id="poza" src="Img/pisici.jpg" alt="Imagine din galerie">
+    <p id="info">Imaginea 1 din 4</p>
+
+    <button id="inapoi">Înapoi</button>
+    <button id="inainte">Înainte</button>
+
+    <p><a href="index.html">Înapoi la laboratorul 6</a></p>
+
+    <script>
+        var imagini = ["Img/pisici.jpg", "Img/caini.jpg", "Img/mare.jpg", "Img/munti.jpg"];
+        var pozitie = 0;                    
+
+        function afiseaza() {
+            document.getElementById("poza").src = imagini[pozitie];
+            document.getElementById("info").innerHTML =
+                "Imaginea " + (pozitie + 1) + " din " + imagini.length;
+        }
+
+        document.getElementById("inainte").onclick = function () {
+            pozitie = (pozitie + 1) % imagini.length;               
+            afiseaza();
+        };
+
+        document.getElementById("inapoi").onclick = function () {
+            pozitie = (pozitie - 1 + imagini.length) % imagini.length;  
+            afiseaza();
+        };
+    </script>
+</body>
+</html>

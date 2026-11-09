@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Ex3 – un buton, trei paragrafe</title>
+    <script>
+        function schimbaParagrafe() {
+            var p1 = document.getElementById("p1");
+            var p2 = document.getElementById("p2");
+            var p3 = document.getElementById("p3");
+
+            p1.innerHTML = "Acesta este paragraful 1";
+            p2.innerHTML = "Acesta este paragraful 2";
+            p3.innerHTML = "Acesta este paragraful 3";
+
+            p1.style.color = "white";
+            p1.style.backgroundColor = "blue";
+
+            p2.style.color = "black";
+            p2.style.backgroundColor = "orange";
+
+            p3.style.color = "yellow";
+            p3.style.backgroundColor = "green";
+        }
+    </script>
+</head>
+<body>
+    <h1>Un buton, trei paragrafe</h1>
+
+    <p id="p1">Primul paragraf</p>
+    <p id="p2">Al doilea paragraf</p>
+    <p id="p3">Al treilea paragraf</p>
+
+    <button onclick="schimbaParagrafe()">Schimbă paragrafele</button>
+
+    <p><a href="index.html">Înapoi la temă</a></p>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>L7_E – Mașini (obiect JSON)</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; }
+        input, button { font-size: 16px; padding: 4px 8px; margin: 3px; }
+        .sectiune { padding: 10px 16px; margin-bottom: 16px; }
+        .rez { margin: 8px 0; }
+        .json { font-family: Consolas, monospace; font-size: 60%; }
+    </style>
+    <script>
+
+        function afiseaza(depozit, idRez) {
+            var rez = document.getElementById(idRez);
+            var text = depozit.getItem("masina");        
+
+            if (text === null) {
+                rez.textContent = "Nicio mașină salvată";
+                return;
+            }
+            var m = JSON.parse(text);                 
+            rez.textContent = "Tip: " + m.tip + ", Model: " + m.model +
+                ", Culoare: " + m.culoare + ", An de fabricație: " + m.anFab;
+
+            var brut = document.createElement("div");   
+            brut.className = "json";
+            brut.textContent = "Text salvat: " + text;
+            rez.appendChild(brut);
+        }
+
+        function salveaza(depozit, sufix, idRez) {
+            var m = {                                      
+                tip: document.getElementById("tip" + sufix).value,
+                model: document.getElementById("model" + sufix).value,
+                culoare: document.getElementById("culoare" + sufix).value,
+                anFab: Number(document.getElementById("an" + sufix).value)
+            };
+            depozit.setItem("masina", JSON.stringify(m)); 
+            afiseaza(depozit, idRez);
+            return false;
+        }
+
+        function sterge(depozit, idRez) {
+            depozit.removeItem("masina");
+            afiseaza(depozit, idRez);
+        }
+
+        function loadMls() {
+            afiseaza(localStorage, "mls");
+        }
+
+        function loadMss() {
+            afiseaza(sessionStorage, "mss");
+        }
+
+        function incarca() {
+            loadMls();
+            loadMss();
+        }
+    </script>
+</head>
+<body onload="incarca()">
+
+    <div class="sectiune" style="background-color:ForestGreen;color:white;font-size:200%">
+        <p>Masina Local Storage</p>
+        <form onsubmit="return salveaza(localStorage, 'L', 'mls')">
+            <label for="tipL">Tip</label> <input id="tipL" required>
+            <label for="modelL">Model</label> <input id="modelL" required>
+            <label for="culoareL">Culoare</label> <input id="culoareL" required>
+            <label for="anL">An</label> <input id="anL" type="number" min="1900" max="2100" required>
+            <button type="submit">Salvează</button>
+            <button type="button" onclick="sterge(localStorage, 'mls')">Șterge</button>
+        </form>
+        <div id="mls" class="rez"></div>
+    </div>
+
+    <div class="sectiune" style="background-color:DarkOrange;color:white;font-size:200%">
+        <p>Masina Session Storage</p>
+        <form onsubmit="return salveaza(sessionStorage, 'S', 'mss')">
+            <label for="tipS">Tip</label> <input id="tipS" required>
+            <label for="modelS">Model</label> <input id="modelS" required>
+            <label for="culoareS">Culoare</label> <input id="culoareS" required>
+            <label for="anS">An</label> <input id="anS" type="number" min="1900" max="2100" required>
+            <button type="submit">Salvează</button>
+            <button type="button" onclick="sterge(sessionStorage, 'mss')">Șterge</button>
+        </form>
+        <div id="mss" class="rez"></div>
+    </div>
+
+    <p><a href="index.html">Înapoi la laboratorul 7</a></p>
+
+    <!--
+        Ex. 5: datele din formular (tip, model, culoare, an) se adună într-un obiect, salvat sub o
+        singură cheie, "masina", cu JSON.stringify; la afișare se citește cu JSON.parse, inclusiv anul.
+        În Local storage se vede un text de forma:
+        {"tip":"Dacia","model":"Logan","culoare":"alb","anFab":2012}
+        Ex. 6: loadMss() afișează mașina din Session Storage; salvarea, afișarea și ștergerea sunt
+        scrise o singură dată, cu depozitul ca parametru.
+    -->
+</body>
+</html>
