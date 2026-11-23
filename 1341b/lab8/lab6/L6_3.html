@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>L6_3</title>
+</head>
+<body>
+    <h1>L6_3 – getElementsByClassName și for</h1>
+
+
+    <h2 class="by">Titlu cu clasa by</h2>
+    <p class="yb">Paragraf cu clasa yb</p>
+    <div class="by">Div cu clasa by</div>
+    <p>Paragraf fără clasă – rămâne neschimbat</p>
+    <ul>
+        <li class="yb">Element de listă cu clasa yb</li>
+        <li class="by">Element de listă cu clasa by</li>
+    </ul>
+    <p class="by">Paragraf cu clasa by</p>
+
+    <p><a href="index.html">Înapoi la laboratorul 6</a></p>
+
+    <script>
+        var by = document.getElementsByClassName("by");
+        for (var i = 0; i < by.length; i++) {
+            by[i].style.color = "blue";
+            by[i].style.backgroundColor = "yellow";
+        }
+
+        var yb = document.getElementsByClassName("yb");
+        for (var j = 0; j < yb.length; j++) {
+            yb[j].style.color = "yellow";
+            yb[j].style.backgroundColor = "blue";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>L8_D – Tabel mașini (doar datele)</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; margin: 30px; }
+        input, button { font-size: 16px; padding: 6px 10px; margin: 3px; }
+        table { border-collapse: collapse; margin-top: 16px; }
+        th, td { border: 1px solid black; padding: 8px 14px; text-align: left; }
+        th { background-color: #dddddd; }
+        #mesaj { color: #b00020; font-weight: bold; min-height: 1.2em; }
+    </style>
+</head>
+<body>
+    <h1>Tabel de mașini – se salvează doar datele</h1>
+
+    <form onsubmit="return adaugaMasina()">
+        <input id="marca" placeholder="Marca" required>
+        <input id="model" placeholder="Model" required>
+        <input id="culoare" placeholder="Culoare" required>
+        <input id="anFab" type="number" placeholder="An fabricatie" required>
+        <button type="submit">Adauga masina</button>
+        <button type="button" onclick="stergeToate()">Sterge toate</button>
+    </form>
+
+    <p id="mesaj"></p>
+
+    <table id="tm">
+        <tr>
+            <th>Marca</th> <th>Model</th> <th>Culoare</th> <th>An fabricatie</th>
+        </tr>
+    </table>
+
+    <p><a href="index.html">Înapoi la laboratorul 8</a></p>
+
+    <script>
+        function masina(mk, md, cl, an) {
+            this.marca = mk;
+            this.model = md;
+            this.culoare = cl;
+            this.anFab = an;
+        }
+
+        // metoda se definește o singură dată, pentru toate obiectele; nefiind proprietate proprie
+        // a obiectului, JSON.stringify nu o mai vede deloc
+        masina.prototype.randNou = function () {
+            return "<tr><td>" + esc(this.marca) + "</td><td>" + esc(this.model) +
+                   "</td><td>" + esc(this.culoare) + "</td><td>" + esc(this.anFab) + "</td></tr>";
+        };
+
+        function esc(t) {
+            return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+                            .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+        }
+
+        var tabel = document.getElementById("tm");
+        var antet = tabel.innerHTML;                  // antetul, păstrat pentru "Sterge toate"
+        var masini = [];                              // doar obiectele masina, nu texte de rând
+
+        var m1 = new masina("Opel", "Zafira", "gri", 2015);
+        var m2 = new masina("Seat", "Ibiza", "roz", 2018);
+        tabel.innerHTML += m1.randNou();
+        tabel.innerHTML += m2.randNou();
+
+        // la încărcare: din JSON se citesc doar datele; fiecare se transformă din nou în obiect masina,
+        // cu new, ca să aibă din nou metoda randNou()
+        if (localStorage.getItem("carsData")) {
+            var date = JSON.parse(localStorage.getItem("carsData"));
+            for (var i = 0; i < date.length; i++) {
+                var m = new masina(date[i].marca, date[i].model, date[i].culoare, date[i].anFab);
+                masini.push(m);
+                tabel.innerHTML += m.randNou();
+            }
+        }
+
+        function valideaza(marca, model, culoare, an) {
+            var anCurent = new Date().getFullYear();
+
+            if (marca === "") {
+                return "Marca nu poate fi goală.";
+            }
+            if (model === "") {
+                return "Modelul nu poate fi gol.";
+            }
+            if (culoare === "") {
+                return "Culoarea nu poate fi goală.";
+            }
+            if (!Number.isInteger(an) || an < 1900 || an > anCurent) {
+                return "Anul de fabricație trebuie să fie un număr întreg între 1900 și " + anCurent + ".";
+            }
+            return "";
+        }
+
+        function adaugaMasina() {
+            var marca = document.getElementById("marca").value.trim();
+            var model = document.getElementById("model").value.trim();
+            var culoare = document.getElementById("culoare").value.trim();
+            var an = Number(document.getElementById("anFab").value);
+
+            var eroare = valideaza(marca, model, culoare, an);
+            if (eroare !== "") {
+                document.getElementById("mesaj").textContent = eroare;
+                return false;
+            }
+            document.getElementById("mesaj").textContent = "";
+
+            var mNoua = new masina(marca, model, culoare, an);
+            tabel.innerHTML += mNoua.randNou();
+
+            masini.push(mNoua);
+            localStorage.setItem("carsData", JSON.stringify(masini));   // doar marcă, model, culoare, an
+
+            return false;
+        }
+
+        // golește tabelul (rămâne antetul) și șterge mașinile salvate
+        function stergeToate() {
+            masini = [];
+            localStorage.removeItem("carsData");    // doar cheia acestei pagini, nu tot Local Storage-ul site-ului
+            tabel.innerHTML = antet;
+            document.getElementById("mesaj").textContent = "";
+        }
+    </script>
+
+    <!--
+        Bonus: în Local Storage (cheia carsData) se păstrează doar datele mașinilor, de forma
+        [{"marca":"Opel","model":"Corsa","culoare":"alb","anFab":2010}, …], fără textul rândului de tabel.
+        La încărcare, fiecare element citit din JSON este transformat din nou într-un obiect masina, cu new,
+        deci are din nou metoda randNou() (definită o singură dată, în masina.prototype).
+
+        Ce se întâmplă dacă se schimbă forma rândului (de exemplu, se adaugă o coloană)? În L8_C, rândul
+        gata făcut este salvat ca text, deci mașinile salvate înainte rămân cu forma veche. În L8_D rândul se
+        construiește la fiecare încărcare, din date, cu metoda curentă, deci toate mașinile urmează forma nouă.
+
+        "Sterge toate" folosește removeItem pe cheia carsData, nu clear(): pe același site, clear() ar șterge
+        și cheile celorlalte laboratoare. Cele două mașini din cod (Opel, Seat) sunt create la fiecare încărcare.
+    -->
+</body>
+</html>

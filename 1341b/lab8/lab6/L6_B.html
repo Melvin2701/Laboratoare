@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>L6_B – paragrafe și buton</title>
+    <style>
+        #p1 { color: blue;  background-color: yellow; font-family: Arial, sans-serif; padding: 10px; }
+        #p2 { color: white; background-color: green;  font-family: 'Times New Roman', serif; font-style: italic; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Două paragrafe și un buton</h1>
+
+    <button id="schimba">Schimbă conținuturile</button>
+
+    <p id="p1">Primul paragraf, cu alt conținut și alt format.</p>
+    <p id="p2">Al doilea paragraf, diferit de primul.</p>
+
+    <p><a href="index.html">Înapoi la laboratorul 6</a></p>
+
+    <script>
+        var p1 = document.getElementById("p1");
+        var p2 = document.getElementById("p2");
+
+        function cereText() {
+            var text = prompt("Introduceți noul text al paragrafului:", this.innerHTML);
+            if (text !== null && text !== "") {
+                this.innerHTML = text;
+            }
+        }
+        p1.onclick = cereText;
+        p2.onclick = cereText;
+
+        document.getElementById("schimba").onclick = function () {
+            var aux = p1.innerHTML;
+            p1.innerHTML = p2.innerHTML;
+            p2.innerHTML = aux;
+        };
+    </script>
+</body>
+</html>

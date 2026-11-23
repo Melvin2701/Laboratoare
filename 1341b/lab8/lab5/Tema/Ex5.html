@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Ex5 – alerte și fundalul paginii</title>
+</head>
+<body>
+    <h1>Cum se încarcă o pagină</h1>
+
+    <script>alert("Alertă între titlu și primul paragraf");</script>
+
+    <p onclick="document.body.style.backgroundColor = 'yellow';">
+        Primul paragraf: la clic, fundalul paginii devine galben.
+    </p>
+
+    <script>alert("Alertă între primul și al doilea paragraf");</script>
+
+    <p onclick="document.body.style.backgroundColor = 'orange';">
+        Al doilea paragraf: la clic, fundalul paginii devine portocaliu.
+    </p>
+
+    <p><a href="index.html">Înapoi la temă</a></p>
+
+    <!--
+        Observație: pagina se construiește de sus în jos. Prima alertă apare când în pagină
+        se vede doar titlul; a doua, când se vede și primul paragraf. Alerta oprește
+        încărcarea până este închisă, deci ce urmează după ea nu apare încă.
+    -->
+</body>
+</html>

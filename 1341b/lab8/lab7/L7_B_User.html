@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>L7_B – Utilizator</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; margin: 30px; }
+        input, button { font-size: 16px; padding: 6px 10px; margin: 4px 0; }
+    </style>
+    <script>
+        function inscrie() {
+            var u = document.getElementById("user").value.trim();
+            var p = document.getElementById("pass").value;
+            var rez = document.getElementById("rez");
+
+            if (u === "" || p === "") {
+                rez.textContent = "Completați utilizatorul și parola.";
+            } else if (localStorage.getItem(u) !== null) {
+                rez.textContent = "Utilizatorul \"" + u + "\" există deja.";
+            } else {
+                localStorage.setItem(u, p);        
+                rez.textContent = "Utilizatorul \"" + u + "\" a fost înscris.";
+            }
+            return false;
+        }
+
+        function verifica() {
+            var u = document.getElementById("user").value.trim();
+            var p = document.getElementById("pass").value;
+            var rez = document.getElementById("rez");
+            var salvat = localStorage.getItem(u);
+
+            if (salvat === null) {
+                rez.textContent = "Utilizator inexistent.";
+            } else if (salvat === p) {                
+                rez.textContent = "Parola este corectă.";
+            } else {
+                rez.textContent = "Parolă greșită.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Utilizator și parolă (în clar)</h1>
+
+    <form onsubmit="return inscrie()">
+        <label for="user">Utilizator</label><br>
+        <input id="user" required><br>
+        <label for="pass">Parolă</label><br>
+        <input id="pass" type="password" required><br>
+        <button type="submit">Înscrie</button>
+        <button type="button" onclick="verifica()">Verifică</button>
+    </form>
+
+    <p id="rez"></p>
+
+    <p><a href="index.html">Înapoi la laboratorul 7</a></p>
+</body>
+</html>

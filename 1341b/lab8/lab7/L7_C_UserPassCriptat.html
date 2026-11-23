@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>L7_C – Utilizator cu MD5</title>
+    <style>
+        body { font-family: Arial, Helvetica, sans-serif; margin: 30px; }
+        input, button { font-size: 16px; padding: 6px 10px; margin: 4px 0; }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+
+    <script>
+        function amprenta(parola) {
+            return CryptoJS.MD5(parola).toString();
+        }
+
+        function inscrie() {
+            var u = document.getElementById("user").value.trim();
+            var p = document.getElementById("pass").value;
+            var rez = document.getElementById("rez");
+
+            if (u === "" || p === "") {
+                rez.textContent = "Completați utilizatorul și parola.";
+            } else if (localStorage.getItem(u) !== null) {
+                rez.textContent = "Utilizatorul \"" + u + "\" există deja.";
+            } else {
+                localStorage.setItem(u, amprenta(p));  
+                rez.textContent = "Utilizatorul \"" + u + "\" a fost înscris.";
+            }
+            return false;
+        }
+
+        function verifica() {
+            var u = document.getElementById("user").value.trim();
+            var p = document.getElementById("pass").value;
+            var rez = document.getElementById("rez");
+            var salvat = localStorage.getItem(u);
+
+            if (salvat === null) {
+                rez.textContent = "Utilizator inexistent.";
+            } else if (salvat === amprenta(p)) {    
+                rez.textContent = "Parola este corectă.";
+            } else {
+                rez.textContent = "Parolă greșită.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Utilizator și parolă (amprentă MD5)</h1>
+
+    <form onsubmit="return inscrie()">
+        <label for="user">Utilizator</label><br>
+        <input id="user" required><br>
+        <label for="pass">Parolă</label><br>
+        <input id="pass" type="password" required><br>
+        <button type="submit">Înscrie</button>
+        <button type="button" onclick="verifica()">Verifică</button>
+    </form>
+
+    <p id="rez"></p>
+
+    <p><a href="index.html">Înapoi la laboratorul 7</a></p>
+
+    <!--
+        Ex. 2 – comparație L7_B_User / L7_C_UserPassCriptat
+        - ce se salvează: cheia este numele utilizatorului; în B valoarea este parola în clar
+          (secret), în C este amprenta MD5 a parolei (ex.: 5ebe2294ecd0… pentru "secret").
+        - verificarea: în B se compară parola scrisă cu cea salvată; în C se calculează MD5
+          din parola scrisă și se compară amprentele.
+        - diferența în sursă: C încarcă biblioteca CryptoJS și folosește CryptoJS.MD5(…)
+          la înscriere și la verificare.
+        Observații: MD5 nu este o criptare: amprenta nu se "decriptează", dar o parolă simplă
+        se găsește ușor după amprentă în tabele publice. Paginile arată principiul; parolele
+        reale se verifică pe server, nu în browser. B și C sunt pe același site, deci văd aceleași
+        chei: un utilizator înscris în B apare "existent" și în C, dar parola lui nu se mai potrivește
+        (în C se compară o amprentă cu un text în clar).
+    -->
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>L6_1 – getElementById</title>
+</head>
+<body>
+    <h1>L6_1 – getElementById</h1>
+
+    <p id="intro">Primul paragraf</p>
+    <p id="mijloc">Paragraful din mijloc rămâne neschimbat.</p>
+    <p id="demo">Ultimul paragraf</p>
+
+    <p><a href="index.html">Înapoi la laboratorul 6</a></p>
+
+    <script>
+        document.getElementById("intro").innerHTML = "Bine ați venit,<br>studenți MIAI!";
+        document.getElementById("demo").innerHTML = "Acest text a fost modificat prin JavaScript.";
+    </script>
+</body>
+</html>
